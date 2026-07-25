@@ -19,6 +19,9 @@ local function hasAccess(ply, target, command)
 		return valid
 	end
 
+	if target:IsPlear() then return true end 
+	if ply:AS_IsInKillstruct() and target:AS_IsInKillstruct() then return true end 
+
 	if sbox_E2_PlyCore:GetInt() == 1 then
 		return true
 	elseif sbox_E2_PlyCore:GetInt() == 2 then
