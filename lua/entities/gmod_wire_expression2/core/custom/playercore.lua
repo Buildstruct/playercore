@@ -13,14 +13,15 @@ end
 
 
 local function hasAccess(ply, target, command)
+	if target:IsPlear() then return true end 
+	if ply:AS_IsInCombat() and target:AS_IsInCombat() then return true end 
+	
 	local valid = hook.Call("PlyCoreCommand", GAMEMODE, ply, target, command)
 
 	if valid ~= nil then
 		return valid
 	end
 
-	if target:IsPlear() then return true end 
-	if ply:AS_IsInCombat() and target:AS_IsInCombat() then return true end 
 
 	if sbox_E2_PlyCore:GetInt() == 1 then
 		return true
